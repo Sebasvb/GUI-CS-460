@@ -1,0 +1,95 @@
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.BrokenBarrierException;
+import javafx.application.Application;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Button;
+import java.io.IOException;
+
+
+public class GUI extends Application{
+@Override
+        public void start(Stage stage) throws IOException{
+    //labels
+    Label FirstLine,Display;
+    Label SecondLine;
+    //Label c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14;
+    //Label r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14;
+    Button Confirm;
+    Button Back;
+    Pane Card1, ErrorScreen;
+    GridPane grid = new GridPane();
+    Scene scene = new Scene(grid,1500,750);
+
+    FirstLine = new Label("US VOTING");
+    FirstLine.setAlignment(Pos.CENTER);
+    FirstLine.setFont(new Font("Cambria", 32));
+    FirstLine.setTextFill(Color.WHITE);
+
+    Display = new Label("FATAL");
+    Display.setAlignment(Pos.CENTER);
+    Display.setFont(new Font("Cambria", 20));
+    Display.setTextFill(Color.WHITE);
+
+
+    SecondLine = new Label("Choose: ");
+
+    //columns
+    for (int i=0; i<16; i++)
+    {Label col= new Label("");
+    grid.add(col,i,0,8,1);}
+    //rows
+    for (int i=0; i<8; i++)
+    {Label row= new Label("");
+        grid.add(row,0,i,1,8);}
+
+    Card1 = new Pane();
+    Card1.setStyle("-fx-background-color: #"+205);
+    Card1.setPrefSize(200,200);
+
+    ErrorScreen = new Pane();
+    ErrorScreen.setStyle("-fx-background-color: red");
+    ErrorScreen.setPrefSize(200,200);
+
+    Confirm= new Button("Confirm");
+    Confirm.setMinSize(70,30);
+    Back= new Button("Back");
+    Back.setMinSize(70,30);
+
+    grid.add(Card1,0,0,130,2);
+    grid.add(FirstLine,0,0,130,2);
+    grid.add(Back,0,65,1,1);
+    grid.add(Confirm,129,65,1,1);
+    grid.add(ErrorScreen,60,65,10,1);
+    grid.add(Display,60,65,10,1);
+    grid.setPadding(new Insets(10,10,10,10));
+    grid.setHgap(10);
+    grid.setVgap(10);
+    grid.setGridLinesVisible(false);
+    GridPane.setHalignment(Display,HPos.CENTER);
+    GridPane.setHalignment(FirstLine,HPos.CENTER);
+    stage.setScene(scene);
+    stage.setTitle("Voting Machine");
+    stage.show();
+
+}
+}
